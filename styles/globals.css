@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+    .menu-item {
+        @apply  p-4 px-10 font-bold text-blue-500 cursor-pointer hover:border-b-2 hover:border-blue-500;
+
+}
+}
