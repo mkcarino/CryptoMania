@@ -30,23 +30,23 @@ function portfolio() {
         <div className="">
           {/* Top */}
           <div className="pt-5">
-            <div className="flex items-center justify-start space-x-2 overflow-x-scroll md:justify-center md:flex-row md:flex-nowrap scrollbar-hide">
-              <div className="flex items-center justify-center rounded-xl md:h-28">
-                <div className="p-5 ml-2 bg-gray-800 rounded-lg md:ml-0 ">
+            <div className="flex flex-col items-center justify-start pt-2 overflow-x-scroll lg:space-x-10 md:justify-center md:flex-row md:flex-nowrap scrollbar-hide">
+              <div className="flex flex-col items-center justify-center w-1/3 p-5 mt-2 bg-gray-800 lg:w-1/5 rounded-xl">
+               
                   <h1 className="text-lg font-extrabold text-center text-white lg:text-2xl md:text-left whitespace-nowrap ">
                     Total Investment
                   </h1>
                   <h2 className="text-lg font-semibold text-center text-white lg:text-2xl md:text-right rounded-xl">
                     {investment}
                   </h2>
-                </div>
+             
               </div>
               <div
                 className={
-                  "flex flex-col items-center justify-center p-5 rounded-xl " +
+                  "flex flex-col items-center justify-center w-1/3 lg:w-1/5 p-5 mt-2 rounded-xl " +
                   (currentValue > totalInvesment
                     ? "bg-green-500"
-                    : "bg-red-300")
+                    : "bg-red-500")
                 }
               >
                 <h1 className="text-lg font-extrabold text-center text-white lg:text-2xl md:text-left whitespace-nowrap ">
@@ -59,10 +59,10 @@ function portfolio() {
 
               <div
                 className={
-                  "flex flex-col items-center justify-center rounded-xl p-5  " +
+                  "flex flex-col items-center justify-center w-1/3 lg:w-1/5 p-5 mt-2 rounded-xl " +
                   (currentValue > totalInvesment
-                    ? "bg-green-500  "
-                    : "bg-red-500 ")
+                    ? "bg-green-500"
+                    : "bg-red-500")
                 }
               >
                 <h1 className="text-lg font-extrabold text-center text-white lg:text-2xl md:text-left">
@@ -105,8 +105,8 @@ export async function getServerSideProps(context) {
     context.res.writeHead(302, { location: "/login" });
     context.res.end();
     return {
-      props: []
-    }
+      props: [],
+    };
   }
 }
 export default portfolio;

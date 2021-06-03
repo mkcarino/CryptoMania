@@ -17,7 +17,8 @@ function Market({ result }) {
     <div className="bg-gray-200">
       <div className="w-full">
         <Header title="Top 100 by MarketCap" />
-        <MarketTable result={result} />
+        <div className="px-4"><MarketTable result={result} /></div>
+        
       </div>
     </div>
   );

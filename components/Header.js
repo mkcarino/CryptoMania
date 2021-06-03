@@ -25,6 +25,9 @@ function Header({title, keywords, description}) {
           </div>
         </Link>
         <div className="flex items-center hidden space-x-4 md:inline-flex md:space-x-4">
+        <Link href="/news" className="menu-item">
+            <h1 className="menu-item">News</h1>
+          </Link>
           <Link href="/market" className="menu-item">
             <h1 className="menu-item">Market</h1>
           </Link>
@@ -38,6 +41,9 @@ function Header({title, keywords, description}) {
          
           {isMenuOpen && (
              <div className="fixed inset-0 z-50 flex flex-col items-center justify-start w-screen h-screen text-black bg-white top-16">
+               <Link href="/news" className="menu-item">
+            <h1 className="menu-item">News</h1>
+          </Link>
              <Link href="/market" className="menu-item">
                <h1 className="menu-item">Market</h1>
              </Link>

@@ -43,11 +43,11 @@ function PortofolioTable() {
   if (portfolioItem.length > 0) {
     portfolioItem.sort((a, b) => b.coinValue - a.coinValue);
     return (
-      <div className="flex flex-col px-0 pt-5 lg:items-center md:px-8 lg:px-32">
-        <div className="overflow-x-auto lg:max-w-7xl">
-          <div className="inline-block min-w-full py-2 align-middle lg:w-full ">
+      <div className="flex flex-col px-2 pt-5 md:items-center" >
+        <div className="overflow-x-auto md:w-full lg:w-4/5">
+          <div className="inline-block min-w-full py-2 align-middle ">
             <div className="overflow-hidden border-b border-blue-500 shadow sm:rounded-lg">
-              <table className="min-w-full divide-y divide-blue-600 lg:w-full">
+              <table className="divide-y divide-blue-600 md:w-full">
                 <thead>
                   <tr>
                     <th

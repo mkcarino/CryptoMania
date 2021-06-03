@@ -1,64 +1,37 @@
 import Header from "../components/Header";
-import axios from "axios";
-import NewsCard from "../components/NewsCard";
-import TopCrypto from "../components/TopCrypto";
-function Home({ result, topTen }) {
-  if(!result){
-    return (
-      <div className="h-screen bg-gray-200">
-        <div className="w-full">
-          <Header title="Top 100 by MarketCap" />
-         <div className="flex justify-center pt-5 text-2xl">There was an error fecthing data</div>
-        </div>
-      </div>
-    )
-  }
+import Image from "next/image";
+import Link from "next/link";
+function Home() {
+  
   return (
-    <div className="h-screen overflow-hidden bg-gray-200">
+    <div className="h-full bg-gray-200 md:h-screen ">
       {/* Header */}
       <Header />
-      <div className="w-full md:px-10 ">
-        <div className="flex mt-5 md:space-x-10">
-          <div className="w-full h-screen overflow-y-scroll md:w-full lg:w-2/3 scrollbar-hide">
-            <div className="pb-2 pl-5 text-2xl font-semibold text-blue-600 uppercase">
-              Crypto Latest News
-            </div>
-            <div className="pb-44">
-              {result.map((news) => (
-                <NewsCard news={news} />
-              ))}
+      
+      
+      <div className="text-gray-700 ">
+            <div className="container flex flex-col px-5 py-16 mx-auto lg:items-center md:flex-row lg:px-28">
+              <div className="w-full mb-10 lg:w-5/6 lg:max-w-lg md:w-1/2">
+                <img className="object-cover object-center rounded" alt="hero" layout="fill" loading="lazy" src="/hero.svg" />
+              </div>
+              <div className="flex flex-col items-start text-left lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16">
+                <h2 className="mb-2 text-lg font-semibold tracking-widest text-black uppercase title-font">CryptoMania </h2>
+                <h1 className="mb-8 text-2xl font-bold tracking-tighter text-left text-black lg:text-5xl title-font"> Crypto news, market info and Portfolio</h1>
+                <p className="mb-8 text-base leading-relaxed text-left text-gray-700 ">The lastest news of cryptocurrency, market information and portfolio tracker.<br></br>
+                  Register now to create your portfolio and see your coins performance</p>
+                <div className="flex flex-col justify-left lg:flex-row">
+                <Link href="/signup">
+                  <button  className="flex items-center px-6 py-2 mt-auto font-semibold text-white transition duration-500 ease-in-out transform bg-blue-600 rounded-lg hover:bg-blue-700 focus:shadow-outline focus:outline-none focus:ring-2 ring-offset-current ring-offset-2"> Sign Up </button>
+                  </Link><p className="mt-2 text-sm text-left text-gray-600 md:ml-6 md:mt-0"> It's all free and data is provided by CoinGecko <br className="hidden lg:block" />
+                    
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
-          <div className="flex flex-col hidden md:w-1/3 lg:inline-flex">
-            <div className="text-2xl font-semibold text-blue-600 uppercase">
-              Top 10 MarketCap
-            </div>
-            <TopCrypto topTen={topTen} />
           </div>
-        </div>
-      </div>
-    </div>
+        
   );
-}
-
-export async function getServerSideProps() {
-  // Fetch data from external API
-  try {
-    const newsApiKey = process.env.NEXT_NEWS_API_KEY;
-    const res = await axios.get(
-      `https://newsapi.org/v2/everything?q=(cryptocurrency AND bitcoin AND crypto)&sortBy=publishedAt&excludeDomains=lifehacker.com&pageSize=10&apiKey=${newsApiKey}`
-    );
-    const resCoinGeko = await axios.get(
-      `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false&price_change_percentage=24h`
-    );
-    const result = res.data.articles;
-    const topTen = resCoinGeko.data;
-    // Pass data to the page via props
-    return { props: { result, topTen } };
-  } catch (error) {
-    const result = false;
-    return { props: {result} };
-  }
 }
 
 export default Home;

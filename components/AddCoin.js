@@ -17,8 +17,9 @@ export default function AddCoin() {
   const [idCoin, setIdCoin] = useState("");
 
   const inputNameHandler = (e) => {
-    setcoinName(e.target.value);
     setSearchDisplay(true);
+    setcoinName(e.target.value);
+    
   };
   const setNameList = (name, id) => {
     setcoinName(name);
@@ -30,7 +31,10 @@ export default function AddCoin() {
   function addCoinToFirebase(e) {
     e.preventDefault();
     if (!searchSet) {
-      console.log("non ho aggiunto nulla perchè non hai scelto");
+      toast.error("Select a coin on the list", {
+        position: "bottom-center",
+        autoClose: 5000,
+      });
       return;
     }
     const totalValue = coinPrice * coinQuantity;
@@ -78,7 +82,7 @@ export default function AddCoin() {
           Add Transaction
         </button>
       </div>
-      <ToastContainer />
+      
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
@@ -134,6 +138,7 @@ export default function AddCoin() {
                         type="text"
                         className="pb-2 border border-blue-400 rounded-md focus:border-blue-300"
                         onChange={inputNameHandler}
+                        onClick={inputNameHandler}
                         value={coinName}
                         required
                       ></input>
