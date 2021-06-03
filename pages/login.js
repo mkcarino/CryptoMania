@@ -4,31 +4,28 @@ import { useAuth } from "../contexts/AuthContext";
 import Router from "next/router";
 import Header from "../components/Header";
 import Link from "next/link";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 function Login() {
   const emailRef = useRef();
   const passwordRef = useRef();
-
   const { login } = useAuth();
-  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   async function handleSubmit(e) {
     e.preventDefault();
-
     try {
       setError("");
       setLoading(true);
       await login(emailRef.current.value, passwordRef.current.value);
-      toast.success("Succesful login!",{
+      toast.success("Succesful login!", {
         position: "bottom-center",
         autoClose: 3000,
-      })
-      setTimeout(() => Router.push("/portfolio"), 2000)
+      });
+      setTimeout(() => Router.push("/portfolio"), 2000);
     } catch (errorr) {
       console.log(errorr.message);
       setError(errorr.message);
-      toast.error(errorr.message,{
+      toast.error(errorr.message, {
         position: "bottom-center",
         autoClose: 5000,
       });
@@ -38,7 +35,7 @@ function Login() {
   return (
     <div className="flex flex-col h-screen">
       <div className="absolute w-full">
-        <Header title='Login | CryptoMania'/>
+        <Header title="Login | CryptoMania" />
       </div>
       <div className="flex items-center justify-center flex-grow px-4 bg-gray-50 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8 ">
@@ -81,7 +78,6 @@ function Login() {
                 />
               </div>
             </div>
-
             <div className="flex items-center justify-between">
               <div className="flex items-center"></div>
 
@@ -94,7 +90,6 @@ function Login() {
                 </a>
               </div>
             </div>
-
             <div>
               <button
                 disabled={loading}

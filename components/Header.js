@@ -1,8 +1,14 @@
 import Head from "next/head";
 import Link from "next/link";
 import AuthButton from "./AuthButton";
-import { TrendingUpIcon } from "@heroicons/react/outline";
+import React, { useState } from "react";
+import { TrendingUpIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 function Header({title, keywords, description}) {
+  const [isMenuOpen, setisMenuOpen] = useState(false)
+
+  function openHandler(){
+    setisMenuOpen(!isMenuOpen)
+  }
   return (
     <div>
     <Head>
@@ -26,9 +32,22 @@ function Header({title, keywords, description}) {
           <Link href="/portfolio">
             <h1 className="menu-item">Portfolio</h1>
           </Link>
-
-          
-          <AuthButton />
+           <AuthButton />
+        </div>
+        <div className="flex items-center md:hidden ">
+        {!isMenuOpen ? (<MenuIcon className="w-12 h-12 text-blue-500" onClick={openHandler} />) : (<XIcon className="w-12 h-12 text-blue-500" onClick={openHandler} />)}
+         
+          {isMenuOpen && (
+             <div className="fixed inset-0 z-50 flex flex-col items-center justify-start w-screen h-screen text-black bg-white top-16">
+             <Link href="/market" className="menu-item">
+               <h1 className="menu-item">Market</h1>
+             </Link>
+             <Link href="/portfolio">
+               <h1 className="menu-item">Portfolio</h1>
+             </Link>
+              <AuthButton />
+           </div>)
+          }
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import * as firebaseAdmin from "firebase-admin";
 
-/* import serviceAccount from "./secret.json"; */
+
 const serviceAccount = {
   project_id: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
   private_key_id: process.env.FIREBASE_PRIVATE_KEY_ID,

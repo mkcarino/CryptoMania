@@ -22,11 +22,11 @@ function portfolio() {
   const gainPercent = Number(
     (currentValue - totalInvesment) / totalInvesment
   ).toLocaleString(undefined, { style: "percent", minimumFractionDigits: 2 });
-  console.log(gainPercent);
+  console.log(investment > portValue);
   return (
     <div className="w-full h-screen bg-gray-200">
       <div className="">
-        <Header title='Portfolio | CryptoMania'/>
+        <Header title="Portfolio | CryptoMania" />
         <div className="">
           {/* Top */}
           <div className="pt-5">
@@ -44,54 +44,37 @@ function portfolio() {
               <div
                 className={
                   "flex flex-col items-center justify-center p-5 rounded-xl " +
-                  (portValue > investment ? "bg-green-500" : "bg-red-500")
+                  (currentValue > totalInvesment
+                    ? "bg-green-500"
+                    : "bg-red-300")
                 }
               >
-                <div className="">
-                  <h1 className="text-lg font-semibold text-center text-white lg:text-2xl md:text-left whitespace-nowrap ">
-                    Portfolio Value
-                  </h1>
-                  {portValue > investment ? (
-                    <h2 className="text-lg font-semibold text-center text-white lg:text-2xl md:text-right">
-                      {portValue}
-                    </h2>
-                  ) : (
-                    <h2 className="text-lg font-semibold text-center text-red-900 lg:text-2xl md:text-right">
-                      {portValue}
-                    </h2>
-                  )}
-                </div>
+                <h1 className="text-lg font-semibold text-center text-white lg:text-2xl md:text-left whitespace-nowrap ">
+                  Portfolio Value
+                </h1>
+                <h2 className="text-lg font-semibold text-center text-white lg:text-2xl md:text-right">
+                  {portValue}
+                </h2>
               </div>
+
               <div
                 className={
                   "flex flex-col items-center justify-center rounded-xl p-5  " +
-                  (portValue > investment ? "bg-green-500  " : "bg-red-500 ")
+                  (currentValue > totalInvesment
+                    ? "bg-green-500  "
+                    : "bg-red-500 ")
                 }
               >
-                <div className="">
-                  <h1 className="text-lg font-semibold text-center text-white lg:text-2xl md:text-left">
-                    Profit/Loss
-                  </h1>
-                  <div className="flex flex-row items-baseline">
-                    {portValue > investment ? (
-                      <h2 className="text-lg font-semibold text-center text-white lg:text-2xl md:text-right">
-                        {gainloss}
-                      </h2>
-                    ) : (
-                      <h2 className="text-lg font-semibold text-center text-white lg:text-2xl md:text-right">
-                        {gainloss}
-                      </h2>
-                    )}
-                    {portValue > investment ? (
-                      <h2 className="text-lg font-semibold text-center text-white lg:text md:text-right">
-                        {`(${gainPercent})`}
-                      </h2>
-                    ) : (
-                      <h2 className="text-lg font-semibold text-center text-white lg:text md:text-right">
-                        {`(${gainPercent})`}
-                      </h2>
-                    )}
-                  </div>
+                <h1 className="text-lg font-semibold text-center text-white lg:text-2xl md:text-left">
+                  Profit/Loss
+                </h1>
+                <div className="flex flex-row items-baseline">
+                  <h2 className="text-lg font-semibold text-center text-white lg:text-2xl md:text-right">
+                    {gainloss}
+                  </h2>
+                  <h2 className="text-lg font-semibold text-center text-white lg:text md:text-right">
+                    {`(${gainPercent})`}
+                  </h2>
                 </div>
               </div>
             </div>
@@ -113,7 +96,6 @@ export async function getServerSideProps(context) {
     const cookies = nookies.get(context);
     const token = await firebaseAdmin.auth().verifyIdToken(cookies.token);
     const { uid, email } = token;
-
     return {
       props: {
         session: `Your email is ${email} and your UID is ${uid}.`,

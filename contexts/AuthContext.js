@@ -28,12 +28,10 @@ export const AuthProvider = ({ children }) => {
       if (!user) {
         setUser(null);
         nookies.set(undefined, "token", "", {});
-        console.log(user);
         return;
       } else {
         const token = await user.getIdToken();
         setUser(user);
-        console.log(token);
         nookies.set(undefined, "token", token, {});
       }
     });

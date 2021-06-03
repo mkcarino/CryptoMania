@@ -1,7 +1,7 @@
 import { LockClosedIcon } from "@heroicons/react/solid";
 import React, { useRef, useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import Router from "next/router";
 import Header from "../components/Header";
 import Link from "next/link";
@@ -23,39 +23,34 @@ function signup() {
       setError("");
       setLoading(true);
       await signup(emailRef.current.value, passwordRef.current.value);
-      toast.success("Account Created!",{
+      toast.success("Account Created!", {
         position: "bottom-center",
         autoClose: 3000,
-      })
-      setTimeout(() => Router.push("/market"), 2000)
-   
-      ;
+      });
+      setTimeout(() => Router.push("/portfolio"), 2000);
     } catch (errorr) {
       console.log(errorr);
       setError(errorr.message);
-      toast.error(errorr.message,{
+      toast.error(errorr.message, {
         position: "bottom-center",
         autoClose: 5000,
       });
     }
     setLoading(false);
   }
-  console.log(error);
   return (
     <div className="flex flex-col h-screen">
       <div className="absolute w-full">
         <Header />
       </div>
-      
+
       <div className="flex items-center justify-center flex-grow px-4 bg-gray-50 sm:px-6 lg:px-8">
-  
         <div className="w-full max-w-md space-y-8 ">
           <div>
             <h2 className="mt-6 text-3xl font-extrabold text-center text-gray-900">
               Sign Up with your email
             </h2>
           </div>
-          
           <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
             <input type="hidden" name="remember" defaultValue="true" />
             <div className="-space-y-px rounded-md shadow-sm">

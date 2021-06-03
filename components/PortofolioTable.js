@@ -36,6 +36,7 @@ function PortofolioTable() {
     
     return () => unsubscribe();
   }, [user]);
+  if(portfolioItem.length > 0 ){
   portfolioItem.sort((a, b) => b.coinValue- (a.coinValue));
   return (
 
@@ -67,7 +68,7 @@ function PortofolioTable() {
                     className="px-6 py-4 text-xs font-medium tracking-wider text-left text-white uppercase bg-blue-600 md:table-cell whitespace-nowrap"
                   >
                     <div className="flex justify-end">
-                      <p> Initial Invesment</p>
+                      <p> Initial Investment</p>
                     </div>
                   </th>
                   <th
@@ -109,7 +110,9 @@ function PortofolioTable() {
         </div>
       </div>
     </div>
-  );
+  );}
+  else
+  return(<div className="flex justify-center">No Transactions yet</div>)
 }
 
 export default PortofolioTable;
