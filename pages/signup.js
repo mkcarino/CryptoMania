@@ -17,7 +17,10 @@ function signup() {
   async function handleSubmit(e) {
     e.preventDefault();
     if (passwordRef.current.value !== passwordConfRef.current.value) {
-      return setError("Password need to be the same");
+      return toast.error("Password don't match", {
+        position: "bottom-center",
+        autoClose: 5000,
+      });
     }
     try {
       setError("");

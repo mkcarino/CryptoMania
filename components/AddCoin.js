@@ -3,6 +3,8 @@ import { Fragment, useState } from "react";
 import JSONDATA from "../Top200List.json";
 import { useAuth } from "../contexts/AuthContext";
 import { db } from "../firebaseClient";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function AddCoin() {
   const { user } = useAuth();
@@ -41,6 +43,12 @@ export default function AddCoin() {
         totalValue: totalValue,
         nameCoin: coinName,
         idCoin: idCoin,
+      })
+      .catch( error =>{
+        toast.error(error.message, {
+          position: "bottom-center",
+          autoClose: 5000,
+        });
       });
     setcoinName("");
     setcoinPrice("");
@@ -61,6 +69,7 @@ export default function AddCoin() {
   return (
     <>
       <div className="">
+      
         <button
           type="button"
           onClick={openModal}
@@ -69,7 +78,7 @@ export default function AddCoin() {
           Add Transaction
         </button>
       </div>
-
+      <ToastContainer />
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"

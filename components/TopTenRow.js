@@ -48,7 +48,7 @@ function TopTenRow({ coin }) {
       </td>
 
       <td className="hidden px-6 py-2 md:table-cell whitespace-nowrap">
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-end">
           {percent1h > "0" ? (
             <p className="font-semibold text-green-500">{percent24h}</p>
           ) : (

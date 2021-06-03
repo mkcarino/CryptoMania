@@ -5,7 +5,6 @@ import React, { useState } from "react";
 import { TrendingUpIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 function Header({title, keywords, description}) {
   const [isMenuOpen, setisMenuOpen] = useState(false)
-
   function openHandler(){
     setisMenuOpen(!isMenuOpen)
   }

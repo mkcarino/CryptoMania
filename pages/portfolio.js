@@ -33,7 +33,7 @@ function portfolio() {
             <div className="flex items-center justify-start space-x-2 overflow-x-scroll md:justify-center md:flex-row md:flex-nowrap scrollbar-hide">
               <div className="flex items-center justify-center rounded-xl md:h-28">
                 <div className="p-5 ml-2 bg-gray-800 rounded-lg md:ml-0 ">
-                  <h1 className="text-lg font-semibold text-center text-white lg:text-2xl md:text-left whitespace-nowrap ">
+                  <h1 className="text-lg font-extrabold text-center text-white lg:text-2xl md:text-left whitespace-nowrap ">
                     Total Investment
                   </h1>
                   <h2 className="text-lg font-semibold text-center text-white lg:text-2xl md:text-right rounded-xl">
@@ -49,7 +49,7 @@ function portfolio() {
                     : "bg-red-300")
                 }
               >
-                <h1 className="text-lg font-semibold text-center text-white lg:text-2xl md:text-left whitespace-nowrap ">
+                <h1 className="text-lg font-extrabold text-center text-white lg:text-2xl md:text-left whitespace-nowrap ">
                   Portfolio Value
                 </h1>
                 <h2 className="text-lg font-semibold text-center text-white lg:text-2xl md:text-right">
@@ -65,7 +65,7 @@ function portfolio() {
                     : "bg-red-500 ")
                 }
               >
-                <h1 className="text-lg font-semibold text-center text-white lg:text-2xl md:text-left">
+                <h1 className="text-lg font-extrabold text-center text-white lg:text-2xl md:text-left">
                   Profit/Loss
                 </h1>
                 <div className="flex flex-row items-baseline">
@@ -105,8 +105,8 @@ export async function getServerSideProps(context) {
     context.res.writeHead(302, { location: "/login" });
     context.res.end();
     return {
-      props: [],
-    };
+      props: []
+    }
   }
 }
 export default portfolio;

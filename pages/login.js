@@ -14,20 +14,17 @@ function Login() {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      setError("");
       setLoading(true);
       await login(emailRef.current.value, passwordRef.current.value);
       toast.success("Succesful login!", {
         position: "bottom-center",
-        autoClose: 3000,
+        autoClose: 2000,
       });
       setTimeout(() => Router.push("/portfolio"), 2000);
     } catch (errorr) {
-      console.log(errorr.message);
-      setError(errorr.message);
       toast.error(errorr.message, {
         position: "bottom-center",
-        autoClose: 5000,
+        autoClose: 3000,
       });
     }
     setLoading(false);
@@ -41,7 +38,7 @@ function Login() {
         <div className="w-full max-w-md space-y-8 ">
           <div>
             <h2 className="mt-6 text-3xl font-extrabold text-center text-gray-900">
-              Sign in to your account
+              Login to your account
             </h2>
             <p className="mt-2 text-center text-gray-600">
               Or{" "}
@@ -81,14 +78,7 @@ function Login() {
             <div className="flex items-center justify-between">
               <div className="flex items-center"></div>
 
-              <div className="text-sm">
-                <a
-                  href="#"
-                  className="font-medium text-blue-600 hover:text-blue-500"
-                >
-                  Forgot your password?
-                </a>
-              </div>
+             
             </div>
             <div>
               <button
@@ -102,7 +92,7 @@ function Login() {
                     aria-hidden="true"
                   />
                 </span>
-                Sign in
+                Login
               </button>
             </div>
           </form>

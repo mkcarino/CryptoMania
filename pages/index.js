@@ -46,7 +46,7 @@ export async function getServerSideProps() {
   try {
     const newsApiKey = process.env.NEXT_NEWS_API_KEY;
     const res = await axios.get(
-      `https://newsapi.org/v2/everything?q=(cryptocurrency AND bitcoin AND crypto)&sortBy=popularity&excludeDomains=lifehacker.com&pageSize=10&apiKey=${newsApiKey}`
+      `https://newsapi.org/v2/everything?q=(cryptocurrency AND bitcoin AND crypto)&sortBy=publishedAt&excludeDomains=lifehacker.com&pageSize=10&apiKey=${newsApiKey}`
     );
     const resCoinGeko = await axios.get(
       `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false&price_change_percentage=24h`
